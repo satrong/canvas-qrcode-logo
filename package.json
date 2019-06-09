@@ -1,0 +1,24 @@
+{
+  "name": "canvas-qrcode-logo",
+  "version": "1.0.0",
+  "description": "Generate QRcode with logo, only support Canvas.",
+  "main": "qrcode.min.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/satrong/canvas-qrcode-logo.git"
+  },
+  "keywords": [
+    "qrcode",
+    "qrcode",
+    "logo"
+  ],
+  "author": "satrong",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.33.0",
+    "webpack-cli": "^3.3.3"
+  }
+}
