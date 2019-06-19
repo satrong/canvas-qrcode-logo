@@ -6,6 +6,10 @@ new QRCode(dom, options)
 ```
 
 ## NPM
+```shell
+npm i canvas-qrcode-logo
+```
+
 ```js
 const QRCode = require('canvas-qrcode-logo');
 new QRCode(document.getElementById("qrcode"), {
