@@ -301,8 +301,8 @@ function roundedRect(ctx, x, y, width, height, radius, padding) {
 
             this._htOption = htOption;
             this._elCanvas = document.createElement("canvas");
-            this._elCanvas.width = htOption.width;
-            this._elCanvas.height = htOption.height;
+            this._elCanvas.width = htOption.width + 2 * htOption.padding;
+            this._elCanvas.height = htOption.height + 2 * htOption.padding;
             el.appendChild(this._elCanvas);
             this._el = el;
             this._oContext = this._elCanvas.getContext("2d");
@@ -324,13 +324,12 @@ function roundedRect(ctx, x, y, width, height, radius, padding) {
             var img = new Image();
             img.style.border = '2px solid red';
             var size = this._htOption.size;
+            var padding = that._htOption.padding * 2;
             img.onload = function () {
                 next();
-                var args = [(that._htOption.width - size) / 2, (that._htOption.height - size) / 2, size, size];
+                var args = [(that._htOption.width + padding - size) / 2, (that._htOption.height + padding - size) / 2, size, size];
                 roundedRect.apply(roundedRect, [that._oContext].concat(args).concat([4, 3]));
                 that._oContext.drawImage.apply(that._oContext, [img].concat(args));
-                // roundedRect(that._oContext, (that._htOption.width - size - 4) / 2, (that._htOption.height - size - 4) / 2, size + 8, size + 8, 4);
-                // that._oContext.drawImage(img, (that._htOption.width - size) / 2, (that._htOption.height - size) / 2, size, size);
             };
             img.src = src;
         };
@@ -343,6 +342,7 @@ function roundedRect(ctx, x, y, width, height, radius, padding) {
         Drawing.prototype.draw = function (oQRCode) {
             var _oContext = this._oContext;
             var _htOption = this._htOption;
+            var padding = _htOption.padding;
 
             var nCount = oQRCode.getModuleCount();
             var nWidth = _htOption.width / nCount;
@@ -352,11 +352,15 @@ function roundedRect(ctx, x, y, width, height, radius, padding) {
 
             this.clear();
 
+            _oContext.fillStyle = '#ffffff';
+            _oContext.fillRect(0, 0, _htOption.width + 2 * padding, _htOption.height + 2 * padding);
+
             for (var row = 0; row < nCount; row++) {
                 for (var col = 0; col < nCount; col++) {
                     var bIsDark = oQRCode.isDark(row, col);
-                    var nLeft = col * nWidth;
-                    var nTop = row * nHeight;
+                    var nLeft = col * nWidth + padding;
+                    var nTop = row * nHeight + padding;
+
                     _oContext.strokeStyle = bIsDark ? _htOption.colorDark : _htOption.colorLight;
                     _oContext.lineWidth = 1;
                     _oContext.fillStyle = bIsDark ? _htOption.colorDark : _htOption.colorLight;
@@ -497,7 +501,8 @@ function roundedRect(ctx, x, y, width, height, radius, padding) {
             colorLight: "#ffffff",
             correctLevel: QRErrorCorrectLevel.H,
             logo: null,
-            size: 30
+            padding: 5, // outside white space
+            size: 30 // logo's size
         };
 
         if (typeof vOption === 'string') {

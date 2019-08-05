@@ -41,5 +41,6 @@ new QRCode(document.getElementById("qrcode"), {
 - `colorDark` `{String}` default: `#000000`
 - `colorLight``{String}` default: `#ffffff`,
 - `correctLevel` `{String}` L | M | Q | H, default: `H`
-- `logo` `String` logo's url,
+- `logo` `{String}` logo's url,
+- `padding` `{Number}` white space, default: 5
 - `size` `{Number}` logo's width and height, default: 30
