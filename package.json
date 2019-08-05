@@ -1,6 +1,6 @@
 {
   "name": "canvas-qrcode-logo",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Generate QRcode with logo, only support Canvas.",
   "main": "qrcode.min.js",
   "scripts": {
