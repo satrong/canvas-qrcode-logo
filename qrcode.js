@@ -331,6 +331,10 @@ function roundedRect(ctx, x, y, width, height, radius, padding) {
                 roundedRect.apply(roundedRect, [that._oContext].concat(args).concat([4, 3]));
                 that._oContext.drawImage.apply(that._oContext, [img].concat(args));
             };
+
+            img.onerror = function () {
+                next();
+            }
             img.src = src;
         };
 
